@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 class ListingImage extends Model
 {
@@ -21,6 +22,7 @@ class ListingImage extends Model
     // getRealSrcAttribute -> real_src
     public function getSrcAttribute()
     {
-        return asset("storage/{$this->filename}");
+        //return asset("storage/{$this->filename}"); // für local
+        return Storage::url($this->filename); // für production
     }
 }
