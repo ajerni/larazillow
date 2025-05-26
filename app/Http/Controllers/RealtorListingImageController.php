@@ -28,7 +28,7 @@ class RealtorListingImageController extends Controller
             ]);
 
             foreach ($request->file('images') as $file) {
-                $path = $file->store('images', 'public');
+                $path = $file->store('images');
 
                 $listing->images()->save(new ListingImage([
                     'filename' => $path
@@ -41,7 +41,7 @@ class RealtorListingImageController extends Controller
 
     public function destroy($listing, ListingImage $image)
     {
-        Storage::disk('public')->delete($image->filename);
+        Storage::delete($image->filename);
         $image->delete();
 
         return redirect()->back()->with('success', 'Image was deleted!');

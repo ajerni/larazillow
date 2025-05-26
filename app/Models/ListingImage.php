@@ -22,7 +22,6 @@ class ListingImage extends Model
     // getRealSrcAttribute -> real_src
     public function getSrcAttribute()
     {
-        //return asset("storage/{$this->filename}"); // für local
-        return Storage::url($this->filename); // für production
+        return Storage::url($this->filename);
     }
 }
